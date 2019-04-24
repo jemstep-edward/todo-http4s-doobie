@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: https-circe-doobie-deployment
+  labels:
+    app: https-circe-doobie
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: https-circe-doobie
+  template:
+    metadata:
+      labels:
+        app: https-circe-doobie
+    spec:
+      containers:
+        - name: todo-http4s-doobie
+          image: todo:190424152941
+          ports:
+            - containerPort: 8080
+              name: http
