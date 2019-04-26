@@ -17,8 +17,15 @@ if [ -z "$3" ]; then
 fi
 NAMESPACE=$3
 
-echo "Switching to the host: $HOST"
-kubectl config set-cluster acceptance-test --server="https://$HOST" --insecure-skip-tls-verify
+if [ -z "$4" ]; then
+    echo "Please supply the fourth argument as the name of the context to use for deployment."
+fi
+
+echo "Registering cluster on host: $HOST"
+kubectl config set-cluster "$CONTEXT" --server="https://$HOST" --insecure-skip-tls-verify
+
+echo "Switching to the context: $CONTEXT"
+kubectl config use-context "$CONTEXT"
 
 echo "Using the namespace: $NAMESPACE"
 kubectl config set-context --current --namespace="$NAMESPACE"
