@@ -8,17 +8,17 @@ then
 fi
 
 if [ -z "$2" ]; then
-    echo "Plesae supply the second argument as the context to use for deployment."
+    echo "Plesae supply the second argument as the host to use for deployment."
 fi
-CONTEXT=$2
+HOST=$2
 
 if [ -z "$3" ]; then
     echo "Plesae supply the third argument as namespace to use for deployment."
 fi
 NAMESPACE=$3
 
-echo "Switching to the context: $CONTEXT"
-kubectl config use-context "$CONTEXT"
+echo "Switching to the host: $HOST"
+kubectl config set-cluster acceptance-test --server="https://$HOST" --insecure-skip-tls-verify
 
 echo "Using the namespace: $NAMESPACE"
 kubectl config set-context --current --namespace="$NAMESPACE"
