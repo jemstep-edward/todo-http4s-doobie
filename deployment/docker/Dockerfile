@@ -1,6 +1,6 @@
 FROM openjdk:8-jre
 
-COPY "todo.jar" ./
+COPY "todo-http4s-doobie-assembly-1.0-SNAPSHOT.jar" ./
 
 EXPOSE 8080
 
