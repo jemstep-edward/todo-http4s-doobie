@@ -20,6 +20,7 @@ NAMESPACE=$3
 if [ -z "$4" ]; then
     echo "Please supply the fourth argument as the name of the context to use for deployment."
 fi
+CONTEXT=$4
 
 echo "Registering cluster on host: $HOST"
 kubectl config set-cluster "$CONTEXT" --server="https://$HOST" --insecure-skip-tls-verify
