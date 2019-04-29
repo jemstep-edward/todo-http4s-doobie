@@ -23,10 +23,11 @@ fi
 CONTEXT=$4
 
 echo "Registering cluster on host: $HOST"
-HOST_IP=$(ifconfig | grep enp0 -n3 | cut -d: -f2 | awk '{print $1}' | tail -3 | head -1)
+HOST_IP=10.96.0.1 #$(ifconfig | grep enp0 -n3 | cut -d: -f2 | awk '{print $1}' | tail -3 | head -1)
 kubectl config set-cluster "$CONTEXT" --server="https://$HOST_IP" --insecure-skip-tls-verify
 
 echo "Switching to the context: $CONTEXT"
+kubectl config set-context "$CONTEXT"
 kubectl config use-context "$CONTEXT"
 
 echo "Using the namespace: $NAMESPACE"
